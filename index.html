@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>陈辉阳 | AI产品经理作品集</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="2026届软件工程应届毕业生 | AI产品经理作品集">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <!-- ======================================== -->
+  <!-- 🔥 封面全局CSS特效（全部写在这里！_coverpage.md里不放任何CSS/JS！） -->
+  <!-- 解决问题3：GitHub预览_coverpage.md不再乱码；解决问题2：按钮z-index提高可点击 -->
+  <!-- ======================================== -->
+  <style>
+    /* 基础样式覆盖 */
+    .app-name a { font-weight: 700; }
+    .github-corner svg { z-index: 99999 !important; }
+
+    /* ====== 封面 section.cover 全局样式 ====== */
+    section.cover {
+      background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+      color: #fff !important;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    section.cover::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 20% 30%, rgba(79,172,254,0.18) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(0,242,254,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(240,147,251,0.1) 0%, transparent 60%);
+      z-index: 1;
+      pointer-events: none;
+      animation: bgShift 20s ease-in-out infinite alternate;
+    }
+    @keyframes bgShift {
+      0% { transform: scale(1) translate(0,0); }
+      100% { transform: scale(1.1) translate(-2%,2%); }
+    }
+    section.cover h1,
+    section.cover h2,
+    section.cover h3,
+    section.cover blockquote,
+    section.cover p,
+    section.cover li,
+    section.cover span {
+      color: #fff !important;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* 🔥 封面内容强制盖在粒子背景上面 —— 解决按钮点不了的问题！ */
+    section.cover .cover-main,
+    section.cover .cover-main > * {
+      position: relative;
+      z-index: 5 !important;
+    }
+
+    /* 标题样式 */
+    .cover-main h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.03em;
+      background: linear-gradient(90deg, #4facfe 0%, #00f2fe 50%, #f093fb 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: titleGlow 3s ease-in-out infinite alternate;
+    }
+    @keyframes titleGlow {
+      0% { filter: drop-shadow(0 0 6px rgba(79,172,254,0.4)); }
+      100% { filter: drop-shadow(0 0 16px rgba(240,147,251,0.6)); }
+    }
+
+    /* 头像：渐变旋转边框 + 发光阴影 */
+    section.cover .cover-main img[alt="logo"],
+    section.cover .cover-main img:first-of-type {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      background: linear-gradient(45deg, #f093fb, #f5576c, #4facfe) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      box-shadow: 0 0 40px rgba(240,147,251,0.4), 0 0 80px rgba(79,172,254,0.4);
+      animation: rotateAvatar 10s linear infinite, avatarPulse 2.5s ease-in-out infinite;
+      position: relative;
+      z-index: 5;
+    }
+    @keyframes rotateAvatar {
+      0% { filter: hue-rotate(0deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+    @keyframes avatarPulse {
+      0%,100% { transform: scale(1); box-shadow: 0 0 40px rgba(240,147,251,0.4), 0 0 80px rgba(79,172,254,0.4); }
+      50% { transform: scale(1.03); box-shadow: 0 0 55px rgba(240,147,251,0.6), 0 0 110px rgba(79,172,254,0.6); }
+    }
+
+    /* slogan 引用块：毛玻璃 + 半透明 */
+    section.cover blockquote {
+      border-left: none !important;
+      background: rgba(255,255,255,0.1);
+      padding: 1rem 1.5rem;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      position: relative;
+      z-index: 5;
+    }
+
+    /* 打字机 slogan 容器 */
+    #typed-slogan {
+      min-height: 2rem;
+      font-size: 1.2rem;
+      color: #bdeaff !important;
+      display: inline-block;
+    }
+    #typed-slogan::after {
+      content: '▊';
+      color: #00f2fe;
+      animation: blink 1s step-end infinite;
+      margin-left: 2px;
+    }
+    @keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0; } }
+
+    /* 4 个彩色浮动胶囊标签 */
+    .float-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      position: relative;
+      z-index: 5;
+    }
+    .float-tags span {
+      padding: 0.6rem 1.4rem;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      animation: floatTag 4s ease-in-out infinite;
+    }
+    .float-tags span:nth-child(1) { background: rgba(240,147,251,0.2); animation-delay: 0s; }
+    .float-tags span:nth-child(2) { background: rgba(79,172,254,0.2); animation-delay: 0.8s; }
+    .float-tags span:nth-child(3) { background: rgba(0,242,254,0.18); animation-delay: 1.6s; }
+    .float-tags span:nth-child(4) { background: rgba(69,255,202,0.18); animation-delay: 2.4s; }
+    @keyframes floatTag {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* 按钮：渐变 + hover 上浮 */
+    section.cover a.button {
+      background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+      border: none !important;
+      color: #000 !important;
+      padding: 12px 36px !important;
+      border-radius: 14px !important;
+      font-weight: 700 !important;
+      box-shadow: 0 10px 30px rgba(79,172,254,0.5);
+      transition: all .3s ease;
+      display: inline-block;
+      position: relative;
+      z-index: 5;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    section.cover a.button:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 16px 40px rgba(0,242,254,0.6);
+    }
+    section.cover a.button.secondary {
+      background: rgba(255,255,255,0.08);
+      border: 2px solid rgba(255,255,255,0.4) !important;
+      color: #fff !important;
+      margin-left: 12px;
+      box-shadow: 0 10px 30px rgba(255,255,255,0.1);
+    }
+    section.cover a.button.secondary:hover {
+      background: rgba(255,255,255,0.16);
+      box-shadow: 0 16px 40px rgba(255,255,255,0.2);
+    }
+
+    /* tsparticles 容器 z-index 设 0，保证不盖按钮 */
+    #tsparticles {
+      position: absolute !important;
+      top: 0; left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      z-index: 2 !important;
+      pointer-events: none !important;
+    }
+
+    /* 响应式：手机端 */
+    @media (max-width: 768px) {
+      .cover-main h1 { font-size: 2rem; }
+      .cover-main p, section.cover blockquote { font-size: 1rem; }
+      .cover-main .buttons { display: flex; flex-direction: column; gap: .5rem; align-items: center; }
+      .cover-main .buttons a { margin: 0; width: 80%; }
+      section.cover a.button.secondary { margin-left: 0; }
+      .float-tags { gap: 0.6rem; }
+      .float-tags span { padding: 0.5rem 1rem; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- tsparticles 粒子背景 挂载点（写在body开头保证覆盖全封面） -->
+  <div id="tsparticles"></div>
+
+  <div id="app"></div>
+
+  <!-- ======================================== -->
+  <!-- Docsify 核心配置 -->
+  <!-- 解决问题1：routerMode hash + homepage 正确配置 彻底消除 404 -->
+  <!-- ======================================== -->
+  <script>
+    window.$docsify = {
+      name: '陈辉阳 · AI产品经理作品集',
+      repo: '',
+
+      // 🔥🔥 这 3 行是 404 终结者！必须保留！
+      routerMode: 'hash',          // 所有URL带 #/ ，怎么刷新怎么点都不会 404
+      loadSidebar: true,
+      subMaxLevel: 3,
+      auto2top: true,
+      homepage: 'README.md',       // 首页明确指定为 README.md，不会找不到首页内容
+      coverpage: true,             // 启用封面
+
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: '🔍 搜索内容（项目/简历/知识点）',
+        noData: '😵 没找到相关内容',
+        depth: 4,
+        hideOtherSidebarContent: false
+      },
+      pagination: {
+        previousText: '‹ 上一页',
+        nextText: '下一页 ›',
+        crossChapter: true,
+        crossChapterText: true
+      },
+      plugins: [
+        function(hook) {
+          var footer = [
+            '<hr/>',
+            '<footer style="text-align: center; color: #999; padding: 1rem 0;">',
+            '<span>© 2026 陈辉阳 · AI产品经理 | Docsify + Vercel 搭建</span>',
+            '</footer>'
+          ].join('');
+          hook.afterEach(function(html) {
+            return html + footer;
+          });
+        }
+      ]
+    }
+  </script>
+
+  <!-- Docsify 核心库 + 插件 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+
+  <!-- ======================================== -->
+  <!-- 🔥 封面 JS 特效：tsparticles 粒子浮动背景 + typed.js 打字机 -->
+  <!-- 全部写在 index.html 末尾，_coverpage.md 里不放任何 JS -->
+  <!-- ======================================== -->
+  <!-- tsparticles 粒子背景 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-slim@2.12.0/tsparticles.slim.bundle.min.js"></script>
+  <!-- typed.js 打字机 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0"></script>
+
+  <script>
+    // 封面渲染完成后触发 粒子 + 打字机
+    window.$docsify = window.$docsify || {};
+    window.$docsify.plugins = window.$docsify.plugins || [];
+    window.$docsify.plugins.push(function (hook) {
+      hook.doneEach(function () {
+        // 只在首页封面渲染时执行
+        if (document.querySelector('section.cover')) {
+          initParticles();
+          initTyped();
+        }
+      });
+    });
+
+    // ======== tsparticles 配置：抓线条 + 鼠标互动（不挡点击！） ========
+    function initParticles() {
+      if (!window.tsParticles || document.getElementById('tsparticles').dataset.inited === '1') return;
+      document.getElementById('tsparticles').dataset.inited = '1';
+      tsParticles.load('tsparticles', {
+        fpsLimit: 60,
+        fullScreen: { enable: false },
+        interactivity: {
+          events: {
+            onHover: { enable: true, mode: 'grab' },       // 鼠标悬停抓线
+            onClick: { enable: true, mode: 'push' },       // 点击喷3个粒子
+            resize: true
+          },
+          modes: {
+            grab: { distance: 160, links: { opacity: 0.7 } },
+            push: { quantity: 3 }
+          }
+        },
+        particles: {
+          color: { value: ['#4facfe', '#00f2fe', '#f093fb', '#ffffff'] },
+          links: {
+            color: '#4facfe',
+            distance: 140,
+            enable: true,
+            opacity: 0.35,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 1.2,
+            outModes: { default: 'bounce' }
+          },
+          number: { density: { enable: true, area: 900 }, value: 70 },
+          opacity: { value: 0.55 },
+          shape: { type: 'circle' },
+          size: { value: { min: 1, max: 3 } }
+        },
+        detectRetina: true
+      });
+    }
+
+    // ======== typed.js 打字机 4 句 slogan 轮播 ========
+    function initTyped() {
+      var el = document.getElementById('typed-slogan');
+      if (!el || el.dataset.inited === '1') return;
+      el.dataset.inited = '1';
+      new Typed('#typed-slogan', {
+        strings: [
+          '踩过 Vibe Coding 的坑 → 懂大模型能力边界的「技术型 AI PM」',
+          '半年 B 端 AI 实习 · 3 个可运行 AI 项目 · 懂 RAG / Agent / Evals',
+          '软工科班听得懂开发语言 · 独立对接 5 家客户 · 懂真实业务 ROI',
+          '二本背景的破局者：展示学习速度 > 展示已有知识储备'
+        ],
+        typeSpeed: 45,
+        backSpeed: 25,
+        backDelay: 2600,
+        loop: true,
+        smartBackspace: true,
+        showCursor: false
+      });
+    }
+  </script>
+</body>
+</html>
