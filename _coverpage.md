@@ -46,7 +46,7 @@
   <span class="float-tag">🧠 懂 RAG / Agent / Evals</span>
   <span class="float-tag">💻 软工科班 · 听得懂开发语言</span>
   <span class="float-tag">🤝 对接过 5 家 B 端客户</span>
-  <span class="float-tag">🛒 电商行业背景</span>
+  <span class="float-tag">🛒 X 年电商行业背景</span>
 </p>
 
 <p style="margin-top: 1.5rem; font-size: 1.15rem; min-height: 2rem; color: #92eaff;">
